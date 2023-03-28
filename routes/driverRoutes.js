@@ -10,6 +10,8 @@ router
   .post(
     authController.protect,
     authController.restrictTo('agency'),
+    driverController.uploadDriverPhoto,
+    driverController.resizeDriverPhoto,
     driverController.createDriver
   );
 
@@ -19,6 +21,8 @@ router
   .patch(
     authController.protect,
     authController.restrictTo('agency'),
+    driverController.uploadDriverPhoto,
+    driverController.resizeDriverPhoto,
     driverController.updateDriver
   )
   .delete(
