@@ -1,3 +1,4 @@
+import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 
 process.on('uncaughtException', (err) => {
@@ -6,6 +7,7 @@ process.on('uncaughtException', (err) => {
   process.exit(1);
 });
 
+dotenv.config({ path: './config.env' });
 import app from './app.js';
 
 // Connect to database
