@@ -51,7 +51,7 @@ const agencySchema = new Schema({
 /**
  * @breif middleware to check for password hash
  */
-userSchema.pre('save', async function (next) {
+agencySchema.pre('save', async function (next) {
   // Only run this function if password was actually modified
   if (!this.isModified('password')) return next();
 
@@ -66,14 +66,14 @@ userSchema.pre('save', async function (next) {
 /**
  * @breif middleware to check for password change
  */
-userSchema.pre('save', function (next) {
+agencySchema.pre('save', function (next) {
   if (!this.isModified('password') || this.isNew) return next();
 
   this.passwordChangedAt = Date.now() - 1000;
   next();
 });
 
-userSchema.pre(/^find/, function (next) {
+agencySchema.pre(/^find/, function (next) {
   // this points to the current query
   this.find({ active: { $ne: false } });
   next();
@@ -85,7 +85,7 @@ userSchema.pre(/^find/, function (next) {
  * @param {String} candidatePassword -> User submitted password
  * @param {String} userPassword -> User password in the collection
  */
-userSchema.methods.correctPassword = async function (
+agencySchema.methods.correctPassword = async function (
   candidatePassword,
   userPassword
 ) {
@@ -97,7 +97,7 @@ userSchema.methods.correctPassword = async function (
  * @details check if the password recently change after the user login
  * @param {Date} -> JWTTimestamp -> The JWT time is token
  */
-userSchema.methods.changedPasswordAfter = function (JWTTimestamp) {
+agencySchema.methods.changedPasswordAfter = function (JWTTimestamp) {
   if (this.passwordChangedAt) {
     const changedTimestamp = parseInt(
       this.passwordChangedAt.getTime() / 1000,
@@ -113,4 +113,4 @@ userSchema.methods.changedPasswordAfter = function (JWTTimestamp) {
 
 const Agency = model('Agency', agencySchema);
 
-export default User;
+export default Agency;
