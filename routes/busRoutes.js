@@ -19,6 +19,8 @@ router
   .patch(
     authController.protect,
     authController.restrictTo('agency'),
+    busController.uploadBusImages,
+    busController.resizeBusImages,
     busController.updateBus
   )
   .delete(
