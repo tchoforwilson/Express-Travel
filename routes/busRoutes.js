@@ -1,32 +1,27 @@
 import { Router } from 'express';
-import busController from '../controllers/busController';
-import authController from '../controllers/authController';
+import busController from '../controllers/busController.js';
+import authController from '../controllers/authController.js';
 
 const router = Router({ mergeParams: true });
+
+// Protect all routes
+router.use(authController.protect);
+
+router.use(authController.restrictTo('manager'));
 
 router
   .route('/')
   .get(busController.getAllBuses)
-  .post(
-    authController.protect,
-    authController.restrictTo('agency'),
-    busController.createBus
-  );
+  .post(busController.setBusAgencyId, busController.createBus);
 
 router
   .route('/:id')
   .get(busController.getBus)
   .patch(
-    authController.protect,
-    authController.restrictTo('agency'),
     busController.uploadBusImages,
     busController.resizeBusImages,
     busController.updateBus
   )
-  .delete(
-    authController.protect,
-    authController.restrictTo('agency'),
-    busController.deletBus
-  );
+  .delete(busController.deletBus);
 
-export default Router;
+export default router;
