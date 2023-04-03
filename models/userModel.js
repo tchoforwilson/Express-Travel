@@ -56,6 +56,8 @@ const userSchema = new Schema(
     timestamps: {
       createdAt: 'createdAt',
       updatedAt: 'updatedAt',
+      toJSON: { virtuals: true },
+      toObject: { virtuals: true },
     },
   }
 );
@@ -81,9 +83,15 @@ userSchema.pre('save', function (next) {
   next();
 });
 
+// QUERY MIDDLEWARE
 userSchema.pre(/^find/, function (next) {
   // this points to the current query
   this.find({ active: { $ne: false } });
+  next();
+});
+
+userSchema.pre(/^find/, function (next) {
+  this.populate({ path: 'agency', select: 'name id contact' });
   next();
 });
 
