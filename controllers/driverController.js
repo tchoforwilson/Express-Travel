@@ -1,3 +1,4 @@
+import sharp from 'sharp';
 import factory from './handlerFactory.js';
 import Driver from './../models/driverModel.js';
 
@@ -18,6 +19,11 @@ const resizeDriverPhoto = catchAsync(async (req, res, next) => {
   next();
 });
 
+const setDriverAgencyId = (req, res, next) => {
+  if (!req.body.agency) req.body.agency = req.user.agency.id;
+  next();
+};
+
 const createDriver = factory.getOne(Driver);
 const updateDriver = factory.updateOne(Driver);
 const getDriver = factory.getOne(Driver, { path: 'Agency', select: 'name' });
@@ -27,6 +33,7 @@ const deleteDriver = factory.deleteOne(Driver);
 export default {
   uploadDriverPhoto,
   resizeDriverPhoto,
+  setDriverAgencyId,
   createDriver,
   updateDriver,
   getDriver,
