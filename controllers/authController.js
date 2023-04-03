@@ -96,6 +96,14 @@ const login = catchAsync(async (req, res, next) => {
   createSendToken(user, 200, req, res);
 });
 
+const logout = (req, res) => {
+  res.cookie('jwt', '', {
+    expires: new Date(Date.now() + 10 * 1000),
+    httpOnly: true,
+  });
+  res.status(200).json({ status: 'success' });
+};
+
 const protect = catchAsync(async (req, res, next) => {
   // 1) Getting token and check of it's there
   let token;
@@ -176,6 +184,7 @@ export default {
   register,
   signup,
   login,
+  logout,
   protect,
   restrictTo,
   updatePassword,
