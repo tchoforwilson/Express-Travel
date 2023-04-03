@@ -10,12 +10,7 @@ router.use(authController.restrictTo('manager', 'user'));
 router
   .route('/')
   .get(driverController.getAllDrivers)
-  .post(
-    driverController.setDriverAgencyId,
-    driverController.uploadDriverPhoto,
-    driverController.resizeDriverPhoto,
-    driverController.createDriver
-  );
+  .post(driverController.setDriverAgencyId, driverController.createDriver);
 
 router
   .route('/:id')
