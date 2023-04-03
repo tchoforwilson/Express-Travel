@@ -38,6 +38,7 @@ const register = catchAsync(async (req, res, next) => {
     name: req.body.name,
     email: req.body.email,
     role: req.body.role,
+    agency: req.body.agency,
   });
 
   await newUser.save({ validateBeforeSave: false });
@@ -82,7 +83,7 @@ const login = catchAsync(async (req, res, next) => {
   // 2) Check if user exists && password exist
   const user = await User.findOne({ email }).select('+password');
   // a. check if password exist
-  if (!user.password) {
+  if (!user?.password) {
     return next(new AppError('Please sign up instead', 401));
   }
 
