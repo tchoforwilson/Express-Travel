@@ -1,6 +1,6 @@
 import { Router } from 'express';
-import driverController from '../controllers/driverController';
-import authController from '../controllers/authController';
+import driverController from '../controllers/driverController.js';
+import authController from '../controllers/authController.js';
 
 const router = Router({ mergeParams: true });
 
