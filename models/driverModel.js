@@ -7,7 +7,7 @@ const driverSchema = new Schema({
     required: [true, 'Please provide driver name'],
   },
   contact: {
-    type: Number,
+    type: String,
     required: [true, 'Please provide driver contact'],
     validate: [validator.isMobilePhone, 'Please provide a valid contact'],
   },
