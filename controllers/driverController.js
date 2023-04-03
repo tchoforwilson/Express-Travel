@@ -1,6 +1,7 @@
 import sharp from 'sharp';
 import factory from './handlerFactory.js';
 import Driver from './../models/driverModel.js';
+import upload from '../utilities/upload.js';
 
 const uploadDriverPhoto = upload.single('photo');
 
