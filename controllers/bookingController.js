@@ -8,9 +8,9 @@ const updateBooking = factory.updateOne(Booking);
 const deletBooking = factory.deleteOne(Booking);
 
 export default {
-    createBooking,
-    getBooking,
-    getAllBookings,
-    updateBooking,
-    deletBooking
-}
+  createBooking,
+  getBooking,
+  getAllBookings,
+  updateBooking,
+  deletBooking,
+};
