@@ -82,6 +82,7 @@ const getAll = (Model) =>
     let filter = {};
     if (req.params.agencyId) filter = { agency: req.params.agencyId };
     if (req.params.busId) filter = { bus: req.params.busId };
+    if (req.params.driverId) filter = { driver: req.params.driverId };
     if (req.params.travelId) filter = { travel: req.params.travelId };
 
     // EXECUTE THE QUERY
