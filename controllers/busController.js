@@ -27,7 +27,8 @@ const resizeBusImages = catchAsync(async (req, res, next) => {
 });
 
 const setBusAgencyId = (req, res, next) => {
-  if (!req.body.agency) req.body.agency = req.user.agency.id;
+  if (!req.body.agency)
+    req.body.agency = req.user.agency.id || req.params.agencyId;
   next();
 };
 
