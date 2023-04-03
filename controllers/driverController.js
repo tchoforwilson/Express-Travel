@@ -8,9 +8,8 @@ const uploadDriverPhoto = upload.single('photo');
 
 const resizeDriverPhoto = catchAsync(async (req, res, next) => {
   if (!req.file) return next();
-  // fill id with current user id at create and river id at update
-  let id = req.params.id || req.user.id;
-  req.file.filename = `driver-${id}-${Date.now()}.jpeg`;
+  // filename is driver-driverDbId-currentdate
+  req.file.filename = `driver-${req.params.id}-${Date.now()}.jpeg`;
 
   await sharp(req.file.buffer)
     .resize(500, 500)
@@ -22,7 +21,8 @@ const resizeDriverPhoto = catchAsync(async (req, res, next) => {
 });
 
 const setDriverAgencyId = (req, res, next) => {
-  if (!req.body.agency) req.body.agency = req.user.agency.id;
+  if (!req.body.agency)
+    req.body.agency = req.user.agency.id || req.params.agencyId;
   next();
 };
 
