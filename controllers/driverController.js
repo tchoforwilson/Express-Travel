@@ -28,7 +28,7 @@ const setDriverAgencyId = (req, res, next) => {
 
 const createDriver = factory.createOne(Driver);
 const updateDriver = factory.updateOne(Driver);
-const getDriver = factory.getOne(Driver, { path: 'Agency', select: 'name' });
+const getDriver = factory.getOne(Driver, { path: 'agency', select: 'name' });
 const getAllDrivers = factory.getAll(Driver);
 const deleteDriver = factory.deleteOne(Driver);
 
