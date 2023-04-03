@@ -2,6 +2,7 @@ import sharp from 'sharp';
 import factory from './handlerFactory.js';
 import Driver from './../models/driverModel.js';
 import upload from '../utilities/upload.js';
+import catchAsync from '../utilities/catchAsync.js';
 
 const uploadDriverPhoto = upload.single('photo');
 
