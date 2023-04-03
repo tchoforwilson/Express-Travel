@@ -11,6 +11,7 @@ router
   .route('/')
   .get(driverController.getAllDrivers)
   .post(
+    driverController.setDriverAgencyId,
     driverController.uploadDriverPhoto,
     driverController.resizeDriverPhoto,
     driverController.createDriver
