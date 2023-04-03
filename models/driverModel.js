@@ -19,12 +19,6 @@ const driverSchema = new Schema({
   },
 });
 
-// Query middleware
-driverSchema.pre(/^find/, function (next) {
-  this.populate({ path: 'agency', select: 'name id contact' });
-  next();
-});
-
 const Driver = model('Driver', driverSchema);
 
 export default Driver;
