@@ -84,6 +84,11 @@ const getAll = (Model) =>
     if (req.params.busId) filter = { bus: req.params.busId };
     if (req.params.driverId) filter = { driver: req.params.driverId };
     if (req.params.travelId) filter = { travel: req.params.travelId };
+    
+        // Search regex for name
+    if (req.query.name) {
+      req.query['name'] = { $regex: req.query.name };
+    }
 
     // EXECUTE THE QUERY
     const features = new APIFeatures(Model.find(filter), req.query)
