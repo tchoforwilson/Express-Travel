@@ -8,6 +8,7 @@ import rateLimit from 'express-rate-limit';
 import xss from 'xss-clean';
 import cookieParser from 'cookie-parser';
 import { fileURLToPath } from 'url';
+import cors from 'cors';
 import { config } from 'dotenv';
 
 import userRouter from './routes/userRoutes.js';
@@ -35,6 +36,12 @@ app.use(helmet());
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
 }
+
+const corsOptions = {
+  origin: 'http://127.0.0.1:3000',
+};
+
+app.use(cors());
 
 // Limit requests from same API
 const limiter = rateLimit({
