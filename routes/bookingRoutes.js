@@ -5,6 +5,7 @@ import bookingController from '../controllers/bookingController.js';
 const router = Router();
 
 router.post('/', bookingController.createBooking);
+router.get('/:id',bookingController.getBooking);
 
 router.use(
   authController.protect,
@@ -15,7 +16,6 @@ router.get('/', bookingController.getAllBookings);
 
 router
   .route('/:id')
-  .get(bookingController.getBooking)
   .patch(bookingController.updateBooking)
   .delete(bookingController.deletBooking);
 
