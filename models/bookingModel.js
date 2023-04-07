@@ -42,10 +42,11 @@ bookingSchema.pre('save', async function (next) {
   // Calculate amount
   const travel = await Travel.findById(this.travel);
   this.amount = travel.price * this.seats.length;
-
+  const arr = this.seats;
   // Update travel available seats
   await Travel.findByIdAndUpdate(this.travel, {
-    availableSeats: travel.availableSeats - this.seats.length,
+    availableSeats: travel.availableSeats - this.seats.length, // available seats
+    bookedSeats: [...travel.bookedSeats, ...this.seats], // booked seats
   });
   next();
 });
