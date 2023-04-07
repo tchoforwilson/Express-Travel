@@ -1,11 +1,18 @@
 import { Schema, model } from 'mongoose';
+import validator from 'validator';
 import Bus from './busModel.js';
 
 const travelSchema = new Schema(
   {
     departure: {
-      type: Date,
-      required: [true, 'Please provide bus departure time'],
+      day: {
+        type: String,
+        required: [true, 'Please provide travelling day'],
+      },
+      time: {
+        type: String,
+        required: [true, 'Please provide travelling time'],
+      },
     },
     nature: {
       type: String,
@@ -43,6 +50,7 @@ const travelSchema = new Schema(
       ref: 'Driver',
     },
     availableSeats: Number,
+    bookedSeats: [Number],
   },
   {
     toJSON: { virtuals: true },
@@ -52,7 +60,7 @@ const travelSchema = new Schema(
 
 travelSchema.pre('save', async function (next) {
   // 1. Determine travel nature from date
-  let now = new Date(this.departure);
+  let now = new Date(this.departure.day + ' ' + this.departure.time);
   let value = '';
   // TODO: Use lodash or greeting-time for this
   if (now.getHours() > 5 && now.getHours() <= 12) value = 'Morning';
@@ -69,8 +77,8 @@ travelSchema.pre('save', async function (next) {
 
 // QUERY MIDDLEWARE
 travelSchema.pre(/^find/, function (next) {
-  this.populate({ path: 'agency', select: 'name contact logo' });
-  this.populate({ path: 'bus', select: 'code seats' });
+  this.populate({ path: 'agency', select: 'name contact logo address' });
+  this.populate({ path: 'bus', select: 'code seats images' });
   next();
 });
 
