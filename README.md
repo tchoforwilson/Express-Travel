@@ -12,20 +12,22 @@ This project and application EXPRESS BOOKING, aims at digitalizing this process 
 
 It provided the following:
 
-# 1. The Inter-Urban Bus agencies are registered into the system database.
+### 1. The Inter-Urban Bus agencies are registered into the system database.
 
-# 2. Each agency is registered with the manager.
+### 2. Each agency is registered with the manager.
 
-# 3. The manager can then now register other workers or users for their bus agency.
+### 3. The manager can then now register other workers or users for their bus agency.
 
-# 4. The manager and workers (users) can signup or login after they are registered.
+### 4. The manager and workers (users) can signup or login after they are registered.
 
-# 5. The manager can add, delete, update workers information, register drivers, and buses.
+###
+ 5. The manager can add, delete, update workers information, register drivers, and buses.
 
-# 6. Managers and users can then create travel.
+###
+ 6. Managers and users can then create travel.
 
 
-# THE BOOKING PROCESS
+## THE BOOKING PROCESS
 
  The booking process begins with the inter-urban bus agency creating a travel, which contains the following information.
 
@@ -36,7 +38,7 @@ It provided the following:
  - The Bus number and the driver name
  - The available seats in the bus
 
-# CUSTOMER BOOKING
+## CUSTOMER BOOKING
 For the customer to book a travel, he/she does the following:
 
   - Visit the site: express-booking.com
@@ -49,7 +51,7 @@ For the customer to book a travel, he/she does the following:
   - Pay your fee by back or MOMO (Mobile Money)
   - Receive a confirmation SMS or EMAIL with a confirmation CODE which is save at the agency system to confirm your booking.
 
-# BAMMMMMMM, HAVE A SAVE JOURNEY
+## BAMMMMMMM, HAVE A SAVE JOURNEY
 
 # TOOLS
 
